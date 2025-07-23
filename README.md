@@ -3,6 +3,7 @@
 Este proyecto despliega una pila de AWS CloudFormation al hacer push a `main`. La pila contiene:
 - Bucket S3
 - Rol IAM
+- Una funcion Lambda (because why not?)
 
 ## Cómo usar
 
