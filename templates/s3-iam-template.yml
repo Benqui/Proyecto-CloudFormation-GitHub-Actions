@@ -1,44 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Stack para crear un bucket S3 y un rol IAM simple
-
-Resources:
-  MyS3Bucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !Sub "my-github-actions-bucket-${AWS::Region}-${AWS::AccountId}"
-
-  MyIAMRole:
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: GitHubDeployRole
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: ec2.amazonaws.com
-            Action: sts:AssumeRole
+Description: Stack para crear un bucket S3, una función Lambda y exponerla vía API Gateway
 
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub benqui-gh-actions-cf-${AWS::AccountId}
-
-  HelloWorldFunction:
-    Type: AWS::Lambda::Function
-    Properties:
-      FunctionName: github-actions-hello-world
-      Runtime: python3.12
-      Handler: index.lambda_handler
-      Role: !GetAtt LambdaExecutionRole.Arn
-      Code:
-        ZipFile: |
-          def lambda_handler(event, context):
-              return {
-                  "statusCode": 200,
-                  "body": "Hola mundo desde Lambda 🚀"
-              }
 
   LambdaExecutionRole:
     Type: AWS::IAM::Role
@@ -62,3 +29,62 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Resource: "*"
+
+  HelloWorldFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: github-actions-hello-world
+      Runtime: python3.12
+      Handler: index.lambda_handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return {
+                  "statusCode": 200,
+                  "body": "Hola mundo desde Lambda 🚀"
+              }
+
+  ApiGatewayRestApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: HelloWorldAPI
+      Description: API Gateway for Lambda Hello World
+
+  ApiGatewayResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      ParentId: !GetAtt ApiGatewayRestApi.RootResourceId
+      PathPart: hello
+      RestApiId: !Ref ApiGatewayRestApi
+
+  ApiGatewayMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: GET
+      ResourceId: !Ref ApiGatewayResource
+      RestApiId: !Ref ApiGatewayRestApi
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: 
+          Fn::Sub: 
+            - arn:aws:apigateway:${Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations
+            - Region: !Ref "AWS::Region"
+              LambdaArn: !GetAtt HelloWorldFunction.Arn
+
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref HelloWorldFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: 
+        Fn::Sub: arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayRestApi}/*/GET/hello
+
+Outputs:
+  ApiInvokeURL:
+    Description: Invoke URL for HelloWorld Lambda
+    Value: 
+      Fn::Sub: https://${ApiGatewayRestApi}.execute-api.${AWS::Region}.amazonaws.com/prod/hello
