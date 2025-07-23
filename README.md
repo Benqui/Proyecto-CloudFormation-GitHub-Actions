@@ -4,6 +4,7 @@ Este proyecto despliega una pila de AWS CloudFormation al hacer push a `main`. L
 - Bucket S3
 - Rol IAM
 - Una funcion Lambda (because why not?)
+- Added an api that invokes the lambda
 
 ## Cómo usar
 
