@@ -14,14 +14,14 @@ Resources:
   VPCResources:
     Type: AWS::Include
     Properties:
-      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/templates/vpc.yaml
+      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/vpc.yaml
 
   LambdaResources:
     Type: AWS::Include
     Properties:
-      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/templates/lambda.yaml
+      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/lambda.yaml
 
   RDSResources:
     Type: AWS::Include
     Properties:
-      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/templates/rds.yaml
+      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/rds.yaml
