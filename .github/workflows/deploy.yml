@@ -33,6 +33,6 @@ jobs:
       - name: Deploy modular CloudFormation stack
         run: |
           aws cloudformation deploy \
-            --template-file infra/root.yaml \
+            --template-file templates/root.yaml \
             --stack-name modular-cf-stack \
             --capabilities CAPABILITY_NAMED_IAM
