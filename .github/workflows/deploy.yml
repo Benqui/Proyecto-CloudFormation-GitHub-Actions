@@ -24,7 +24,7 @@ jobs:
 
       - name: Upload nested templates to S3
         run: |
-          BUCKET_NAME=benqui-modular-infra
+          BUCKET_NAME=benqui-gh-actions-cf-148761664911
           TEMPLATE_PATH=infra
           aws s3 cp $TEMPLATE_PATH/vpc.yaml s3://$BUCKET_NAME/templates/vpc.yaml
           aws s3 cp $TEMPLATE_PATH/lambda.yaml s3://$BUCKET_NAME/templates/lambda.yaml
