@@ -24,9 +24,9 @@ Adding A VPC and RDS subnets a cluster and a lambda functione:
 4. Creating the RDS DB 
 5. Creating an ECS cluster
 6. A lambda function w/ python 3.13 (latest)
-    _. The rol for the lambda function
+   _. The rol for the lambda function
 
 
-
+It worked!!!
 
 If you see this you need to see paddington 2, it's really good, made me cry, [pedro pascal](https://www.youtube.com/watch?v=xEckT94M7qg) was right about this movie 🥹
