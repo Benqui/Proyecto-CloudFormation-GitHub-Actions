@@ -18,13 +18,13 @@ Este proyecto despliega una pila de AWS CloudFormation al hacer push a `main`. L
 
 Adding A VPC and RDS subnets a cluster and a lambda functione:
 
-1. Making a private VPC 
-2. Creating a subnet
-3. Creating a SG for HTTP and MYSQL
-4. Creating the RDS DB 
-5. Creating an ECS cluster
-6. A lambda function w/ python 3.13 (latest)
-   * The rol for the lambda function
+1. [x] Making a private VPC 
+2. [ ] Creating a subnet
+3. [ ] Creating a SG for HTTP and MYSQL
+4. [x] Creating the RDS DB 
+5. [ ] Creating an ECS cluster
+6. [x] A lambda function w/ python 3.13 (latest)
+   * [x] The rol for the lambda function
 
 
 It worked!!!
