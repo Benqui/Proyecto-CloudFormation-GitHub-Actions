@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Include
+Description: Modular infra testongo yeh
+
+#infra/
+#│
+#├── root.yaml           <- The root for changes 
+#├── vpc.yaml
+#├── lambda.yaml
+#├── rds.yaml
+
+
+Resources:
+  VPCResources:
+    Type: AWS::Include
+    Properties:
+      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/templates/vpc.yaml
+
+  LambdaResources:
+    Type: AWS::Include
+    Properties:
+      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/templates/lambda.yaml
+
+  RDSResources:
+    Type: AWS::Include
+    Properties:
+      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/templates/rds.yaml

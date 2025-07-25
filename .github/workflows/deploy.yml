@@ -35,4 +35,4 @@ jobs:
           aws cloudformation deploy \
             --template-file templates/root.yaml \
             --stack-name modular-cf-stack \
-            --capabilities CAPABILITY_NAMED_IAM
+#            --capabilities CAPABILITY_NAMED_IAM
