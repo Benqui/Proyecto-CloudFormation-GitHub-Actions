@@ -1,27 +1,35 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Include
-Description: Modular infra testongo yeh
+Description: Root CloudFormation template with modular includes
 
-#infra/
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name of the S3 bucket containing the nested templates
+
+Resources:
+  VPCStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL:
+        Fn::Sub: https://${BucketName}.s3.amazonaws.com/vpc.yaml
+
+  LambdaStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL:
+        Fn::Sub: https://${BucketName}.s3.amazonaws.com/lambda.yaml
+
+  RDSStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL:
+        Fn::Sub: https://${BucketName}.s3.amazonaws.com/rds.yaml
+
+
+        
+#templates/
 #│
 #├── root.yaml           <- The root for changes 
 #├── vpc.yaml
 #├── lambda.yaml
 #├── rds.yaml
-
-
-Resources:
-  VPCResources:
-    Type: AWS::Include
-    Properties:
-      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/vpc.yaml
-
-  LambdaResources:
-    Type: AWS::Include
-    Properties:
-      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/lambda.yaml
-
-  RDSResources:
-    Type: AWS::Include
-    Properties:
-      Location: https://s3.amazonaws.com/benqui-gh-actions-cf-148761664911/rds.yaml
