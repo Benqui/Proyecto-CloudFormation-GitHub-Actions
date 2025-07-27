@@ -30,3 +30,6 @@ Adding A VPC and RDS subnets a cluster and a lambda functione:
 It worked!!!
 
 If you see this you need to see paddington 2, it's really good, made me cry, [pedro pascal](https://www.youtube.com/watch?v=xEckT94M7qg) was right about this movie 🥹
+
+Picture of a coco: 
+![if you are seeing this the picture ain't working my guy](/pictures/650_1200.jpeg)
