@@ -24,6 +24,12 @@ Adding A VPC and RDS subnets a cluster and a lambda functione:
 3. [x] A lambda function w/ python 3.13 (latest)
    * [x] The rol for the lambda function
 
+It worked!!!
+
+Successfull deployment on AWS: 
+![if you are seeing this the picture ain't working my guy](/pictures/successfull-deployment.jpeg)
+
+
 ## Part 2 is :
  
 4. [x] Creating a subnet
@@ -36,9 +42,7 @@ Also adding a Git branching strat here
 * Feature branches --> Used for adding new infra features or modifications
 * Rollback branches --> To quickly restore prev infra version in case of failure
 
-It worked!!!
+Ok so quick note here... I understand that I would need to create a new workflow for the stating branch I either add the to the "main" account with the tag of staging or somethign or I the Ideal way and how I usually see this is done is by having an AWS console for this staging env, but I have no money for this part XD but I get the idea.
 
 If you see this you need to see paddington 2, it's really good, made me cry, [pedro pascal](https://www.youtube.com/watch?v=xEckT94M7qg) was right about this movie 🥹
 
-Successfull deployment on AWS: 
-![if you are seeing this the picture ain't working my guy](/pictures/successfull-deployment.jpeg)
