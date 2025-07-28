@@ -11,7 +11,7 @@ Resources:
           def lambda_handler(event, context):
               return {
                   "statusCode": 200,
-                  "body": "Hola mundo desde Lambda modular 🚀"
+                  "body": "Modification adding subnet to VPC and associate it to this lambda 🚀"
               }
 
   LambdaExecutionRole:
@@ -36,3 +36,8 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Resource: "*"
+      VpcConfig:
+        SubnetIds:
+          - !ImportValue ModularVPC-PublicSubnet1Id
+        SecurityGroupIds:
+          - !ImportValue ModularVPC-LambdaSecurityGroupId
