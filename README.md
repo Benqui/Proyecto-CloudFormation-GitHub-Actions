@@ -36,6 +36,10 @@ Successfull deployment on AWS:
 5. [x] Creating a SG for HTTP and MYSQL
 6. [ ] Creating an ECS cluster
 
+## EXTRA 
+
+7. [ ] Add sagemaker
+
 Also adding a Git branching strat here
 * Main Branch --> Stable, prod-ready infra
 * Staging Branch --> For testing infrastructure changes before merging to main
