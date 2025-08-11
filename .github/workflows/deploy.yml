@@ -36,6 +36,6 @@ jobs:
         run: |
           aws cloudformation deploy \
             --template-file templates/root.yaml \
-            --stack-name adding-vpc-changes \
+            --stack-name changes-rds-conditionals \
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides BucketName=benqui-gh-actions-cf-148761664911
