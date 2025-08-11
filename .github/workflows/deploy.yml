@@ -47,10 +47,6 @@ jobs:
         run: |
           aws cloudformation deploy \
             --template-file templates/root.yaml \
-<<<<<<< HEAD
             --stack-name changes-rds-conditionals \
-=======
-            --stack-name changes-rds-conditionals-p2 \
->>>>>>> staging
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides BucketName=benqui-gh-actions-cf-148761664911 CreateDB=${{ steps.check_rds.outputs.create_db }}
