@@ -44,3 +44,16 @@ Resources:
       Tags:
         - Key: Name
           Value: LambdaSecurityGroup
+
+Outputs:
+  PublicSubnet1Id:
+    Description: Public Subnet 1 ID
+    Value: !Ref PublicSubnet1
+    Export:
+      Name: ModularVPC-PublicSubnet1Id
+
+  LambdaSecurityGroupId:
+    Description: Lambda Security Group ID
+    Value: !Ref LambdaDBSecurityGroup
+    Export:
+      Name: ModularVPC-LambdaSecurityGroupId
