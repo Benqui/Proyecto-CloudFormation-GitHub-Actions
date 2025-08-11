@@ -6,6 +6,15 @@ Parameters:
     Type: String
     Description: Name of the S3 bucket containing the nested templates
 
+  CreateDB:
+    Type: String
+    AllowedValues: ["true", "false"]
+    Default: "true"
+    Description: Whether to create the RDS database stack or skip it if it already exists
+
+Conditions:
+  ShouldCreateDB: !Equals [!Ref CreateDB, "true"]
+
 Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack
@@ -21,6 +30,7 @@ Resources:
         Fn::Sub: https://${BucketName}.s3.amazonaws.com/lambda.yaml
 
   RDSStack:
+    Condition: ShouldCreateDB
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL:
