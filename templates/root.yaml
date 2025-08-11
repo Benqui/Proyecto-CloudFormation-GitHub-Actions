@@ -9,7 +9,7 @@ Parameters:
   CreateDB:
     Type: String
     AllowedValues: ["true", "false"]
-    Default: "true"
+    Default: "false"
     Description: Whether to create the RDS database stack or skip it if it already exists
 
 Conditions:
