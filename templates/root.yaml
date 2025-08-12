@@ -28,9 +28,9 @@ Resources:
       TemplateURL:
         Fn::Sub: https://${BucketName}.s3.amazonaws.com/lambda.yaml
       Parameters:
+        VpcId: !GetAtt VPCStack.Outputs.VpcId
         PublicSubnet1Id: !GetAtt VPCStack.Outputs.PublicSubnet1Id
-        LambdaSecurityGroupId: !GetAtt VPCStack.Outputs.LambdaSecurityGroupId
-
+        PublicSubnet2Id: !GetAtt VPCStack.Outputs.PublicSubnet2Id
   RDSStack:
     Condition: ShouldCreateDB
     Type: AWS::CloudFormation::Stack
