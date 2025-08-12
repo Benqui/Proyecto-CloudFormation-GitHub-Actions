@@ -29,9 +29,9 @@ Resources:
       TemplateURL:
         Fn::Sub: https://${BucketName}.s3.amazonaws.com/lambda.yaml
       Parameters:
-        VpcId: !ImportValue ModularVPC-VpcId
-        PublicSubnet1Id: !ImportValue ModularVPC-PublicSubnet1Id
-        LambdaSecurityGroupId: !ImportValue ModularVPC-LambdaSecurityGroupId
+        VpcId: !GetAtt VPCStack.Outputs.VpcId
+        PublicSubnet1Id: !GetAtt VPCStack.Outputs.PublicSubnet1Id
+        LambdaSecurityGroupId: !GetAtt VPCStack.Outputs.LambdaSecurityGroupId
 
   RDSStack:
     Condition: ShouldCreateDB
