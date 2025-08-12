@@ -29,7 +29,7 @@ Resources:
       TemplateURL:
         Fn::Sub: https://${BucketName}.s3.amazonaws.com/lambda.yaml
       Parameters:
-        {% comment %} VpcId: !GetAtt VPCStack.Outputs.VpcId {% endcomment %}
+        #VpcId: !GetAtt VPCStack.Outputs.VpcId
         PublicSubnet1Id: !GetAtt VPCStack.Outputs.PublicSubnet1Id
         LambdaSecurityGroupId: !GetAtt VPCStack.Outputs.LambdaSecurityGroupId
 
