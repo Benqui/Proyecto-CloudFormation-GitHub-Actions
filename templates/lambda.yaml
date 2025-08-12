@@ -14,7 +14,7 @@ Resources:
   HelloWorldFunction:
     Type: AWS::Lambda::Function
     Properties:
-      FunctionName: modular-hello-world
+      FunctionName: modular-hello-world-new
       Runtime: python3.13
       Handler: index.lambda_handler
       Role: arn:aws:iam::148761664911:role/modular-lambda-role
