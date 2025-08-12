@@ -25,7 +25,8 @@ Resources:
   LambdaStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://${BucketName}.s3.amazonaws.com/lambda.yaml
+      TemplateURL:
+        Fn::Sub: https://${BucketName}.s3.amazonaws.com/lambda.yaml
       Parameters:
         PublicSubnet1Id: !GetAtt VPCStack.Outputs.PublicSubnet1Id
         LambdaSecurityGroupId: !GetAtt VPCStack.Outputs.LambdaSecurityGroupId
