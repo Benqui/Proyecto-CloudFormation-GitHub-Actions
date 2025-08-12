@@ -1,3 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lambda stack with VPC config using parameters
+
+Parameters:
+  PublicSubnet1Id:
+    Type: String
+    Description: Subnet ID for Lambda function
+
+  LambdaSecurityGroupId:
+    Type: String
+    Description: Security Group ID for Lambda function
+
 Resources:
   HelloWorldFunction:
     Type: AWS::Lambda::Function
@@ -13,6 +25,11 @@ Resources:
                   "statusCode": 200,
                   "body": "Modification adding subnet to VPC and associate it to this lambda 🚀"
               }
+      VpcConfig:
+        SubnetIds:
+          - !Ref PublicSubnet1Id
+        SecurityGroupIds:
+          - !Ref LambdaSecurityGroupId
 
   LambdaExecutionRole:
     Type: AWS::IAM::Role
@@ -36,8 +53,3 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Resource: "*"
-      VpcConfig:
-        SubnetIds:
-          - !ImportValue ModularVPC-PublicSubnet1Id
-        SecurityGroupIds:
-          - !ImportValue ModularVPC-LambdaSecurityGroupId
